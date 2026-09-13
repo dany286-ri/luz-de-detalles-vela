@@ -12,8 +12,8 @@
 export const SITE_CONFIG = {
   BRAND_NAME: "Luz de Detalles",
   BRAND_TAGLINE: "Velas y detalles personalizados",
-  WHATSAPP_NUMBER: "WHATSAPP_NUMBER", // TODO: reemplazar por el número real, ej: "573001234567"
-  INSTAGRAM_URL: "INSTAGRAM_URL", // TODO: reemplazar, ej: "https://instagram.com/luz.dedetalles"
+  WHATSAPP_NUMBER: "573102483613",
+  INSTAGRAM_URL: "https://www.instagram.com/luzde.detalles/",
   EMAIL: "hola@luzdedetalles.com", // TODO: reemplazar por el correo real
   DOMICILIO_PRICE: 5000,
   CITY: "Tunja, Boyacá",

@@ -8,6 +8,7 @@ import cajaVelasDetalle from "../assets/images/caja-velas-detalle.jpg";
 import grado from "../assets/images/grado.jpg";
 import babyShower from "../assets/images/baby-shower.jpg";
 import collage from "../assets/images/collage.jpg";
+import esferaNavidena from "../assets/images/esfera-navidena.jpg";
 
 const nombreYFrase: PersonalizationField[] = [
   { key: "nombre", label: "Nombre o palabra", type: "text", placeholder: "Ej: Gratitud, María...", required: true },
@@ -154,10 +155,10 @@ export const PRODUCTS: Product[] = [
     description:
       "Una esfera navideña de acrílico transparente con la foto y el nombre de tu mascota — un recuerdo tierno para colgar en el árbol. Incluye listón para colgar.",
     category: ["navidad", "mascotas"],
-    images: [],
-    isPlaceholderImage: true,
+    images: [esferaNavidena],
     personalizable: true,
     personalizationFields: mascotaFields,
+    featured: true,
   },
 ];
 
