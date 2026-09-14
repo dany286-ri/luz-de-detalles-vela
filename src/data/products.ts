@@ -14,10 +14,17 @@ const nombreYFrase: PersonalizationField[] = [
   { key: "nombre", label: "Nombre o palabra", type: "text", placeholder: "Ej: Gratitud, María...", required: true },
   { key: "colorGlitter", label: "Color de escarcha / degradé", type: "text", placeholder: "Ej: dorado, rosado..." },
   { key: "notas", label: "Información adicional", type: "textarea", placeholder: "Cuéntanos cualquier detalle extra" },
+  {
+    key: "fotoAdicional",
+    label: "¿Quieres agregarle una foto a tu vela? (opcional, la envías por WhatsApp)",
+    type: "select",
+    options: ["No, sin foto", "Sí, quiero agregarle una foto"],
+  },
 ];
 
 const gradoFields: PersonalizationField[] = [
   { key: "nombre", label: "Nombre de quien se gradúa", type: "text", required: true },
+  { key: "foto", label: "Foto para la vela", type: "text", placeholder: "La envías por WhatsApp al confirmar tu pedido", required: true },
   { key: "anio", label: "Año de grado", type: "text", placeholder: "2026" },
   { key: "mensaje", label: "Mensaje para la tarjeta", type: "textarea", placeholder: "Un mensaje corto y especial" },
   { key: "fechaEvento", label: "Fecha en que lo necesitas", type: "date" },
@@ -27,6 +34,12 @@ const babyShowerFields: PersonalizationField[] = [
   { key: "nombre", label: "Nombre del bebé", type: "text", required: true },
   { key: "mensaje", label: "Mensaje para la tarjeta", type: "textarea" },
   { key: "fechaEvento", label: "Fecha del baby shower", type: "date" },
+  {
+    key: "fotoAdicional",
+    label: "¿Quieres agregarle una foto a tu vela? (opcional, la envías por WhatsApp)",
+    type: "select",
+    options: ["No, sin foto", "Sí, quiero agregarle una foto"],
+  },
 ];
 
 const mascotaFields: PersonalizationField[] = [

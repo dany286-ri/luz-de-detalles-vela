@@ -10,6 +10,7 @@ const FIELD_LABELS: Record<string, string> = {
   fechaEvento: "Fecha del evento",
   nombreMascota: "Nombre de la mascota",
   foto: "Foto",
+  fotoAdicional: "Foto en la vela",
 };
 
 /** Genera el texto del pedido para un solo producto (usado en la página de producto). */
