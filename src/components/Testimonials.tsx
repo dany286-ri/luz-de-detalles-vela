@@ -1,6 +1,7 @@
 import React from "react";
 import Reveal from "./Reveal";
 import { TESTIMONIALS } from "../data/testimonials";
+import ReviewForm from "./ReviewForm";
 
 /**
  * Sección de testimonios con placeholders honestos.
@@ -47,6 +48,10 @@ export default function Testimonials() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="max-w-md mt-8 md:mt-10" delay={(TESTIMONIALS.length + placeholderCount) * 90}>
+          <ReviewForm />
+        </Reveal>
       </div>
     </section>
   );

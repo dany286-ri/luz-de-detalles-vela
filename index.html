@@ -25,5 +25,17 @@
   <body class="bg-cream text-ink">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!--
+      Formulario oculto SOLO para que Netlify Forms lo detecte durante el build
+      (Netlify escanea el HTML estático, no lo que React renderiza en el navegador).
+      El formulario real y visible está en src/components/ReviewForm.tsx y envía
+      los datos a este mismo formulario por su "name".
+    -->
+    <form name="resenas" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nombre" />
+      <textarea name="resena"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html>
