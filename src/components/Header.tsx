@@ -28,7 +28,7 @@ export default function Header() {
         scrolled ? "shadow-[0_2px_20px_-8px_rgba(43,39,36,0.15)] py-2" : "py-4"
       }`}
     >
-      <div className="max-w-8xl mx-auto px-5 md:px-8 flex items-center justify-between">
+      <div className="max-w-8xl mx-auto px-5 md:px-8 flex items-center justify-between gap-6">
         {/* Logo */}
         <a href="#inicio" className="font-serif text-2xl md:text-3xl font-medium tracking-wide text-ink">
           {SITE_CONFIG.BRAND_NAME}
