@@ -1,11 +1,17 @@
 import React from "react";
 import Reveal from "./Reveal";
+import { TESTIMONIALS } from "../data/testimonials";
 
 /**
  * Sección de testimonios con placeholders honestos.
- * No se inventan reseñas: este espacio se completará con experiencias reales de clientes.
+ * No se inventan reseñas: los espacios sin reseña real muestran un aviso claro.
+ * Para agregar una reseña, edita src/data/testimonials.ts — no hace falta tocar este archivo.
  */
+const MIN_SLOTS = 3;
+
 export default function Testimonials() {
+  const placeholderCount = Math.max(0, MIN_SLOTS - TESTIMONIALS.length);
+
   return (
     <section className="py-16 md:py-24 bg-ivory/60">
       <div className="max-w-8xl mx-auto px-5 md:px-8">
@@ -15,8 +21,20 @@ export default function Testimonials() {
         </Reveal>
 
         <div className="grid sm:grid-cols-3 gap-5 md:gap-6">
-          {[0, 1, 2].map((i) => (
-            <Reveal key={i} delay={i * 90}>
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={`${t.author}-${i}`} delay={i * 90}>
+              <div className="bg-cream border border-ink/10 rounded-2xl p-6 h-full flex flex-col justify-between shadow-card">
+                <span className="text-2xl text-gold-soft mb-4" aria-hidden>
+                  “
+                </span>
+                <p className="text-charcoal/80 text-sm italic leading-relaxed flex-1">{t.quote}</p>
+                <p className="text-xs text-charcoal/50 mt-5">— {t.author}</p>
+              </div>
+            </Reveal>
+          ))}
+
+          {Array.from({ length: placeholderCount }).map((_, i) => (
+            <Reveal key={`placeholder-${i}`} delay={(TESTIMONIALS.length + i) * 90}>
               <div className="bg-cream border border-dashed border-ink/15 rounded-2xl p-6 h-full flex flex-col justify-between">
                 <span className="text-2xl text-gold-soft mb-4" aria-hidden>
                   “
