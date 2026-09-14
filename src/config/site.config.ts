@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
   BRAND_TAGLINE: "Velas y detalles personalizados",
   WHATSAPP_NUMBER: "573102483613",
   INSTAGRAM_URL: "https://www.instagram.com/luzde.detalles/",
-  EMAIL: "hola@luzdedetalles.com", // TODO: reemplazar por el correo real
+  EMAIL: "luzdedetalles@gmail.com",
   DOMICILIO_PRICE: 5000,
   CITY: "Tunja, Boyacá",
   CURRENCY_LOCALE: "es-CO",
