@@ -46,7 +46,7 @@ export default function Cart() {
         <div className="flex-1 overflow-y-auto px-6 py-5">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-3 text-charcoal/60">
-              <span className="text-3xl" aria-hidden>
+              <span className="text-3xl inline-block animate-flicker" aria-hidden>
                 🕯️
               </span>
               <p className="text-sm">Aún no has agregado ningún detalle.</p>
@@ -61,7 +61,7 @@ export default function Cart() {
                       {item.product.images[0] ? (
                         <img src={item.product.images[0]} alt="" className="w-full h-full object-cover" />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-lg">🕯️</div>
+                        <div className="w-full h-full flex items-center justify-center text-lg"><span className="inline-block animate-flicker">🕯️</span></div>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">

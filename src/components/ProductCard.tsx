@@ -25,7 +25,7 @@ export default function ProductCard({ product, onOpen }: ProductCardProps) {
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-beige to-sand text-cocoa">
-            <span className="text-3xl" aria-hidden>
+            <span className="text-3xl inline-block animate-flicker" aria-hidden>
               🕯️
             </span>
             <span className="text-xs tracking-wide px-4 text-center">Foto próximamente</span>

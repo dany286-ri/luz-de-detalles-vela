@@ -76,7 +76,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             </>
           ) : (
             <div className="w-full aspect-square flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-beige to-sand text-cocoa">
-              <span className="text-4xl" aria-hidden>
+              <span className="text-4xl inline-block animate-flicker" aria-hidden>
                 🕯️
               </span>
               <span className="text-xs tracking-wide px-6 text-center">
