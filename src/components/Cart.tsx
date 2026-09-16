@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { formatCOP, SITE_CONFIG } from "../config/site.config";
-import { buildCartMessage, whatsAppLinkFor } from "../utils/whatsapp";
+import { buildCartMessage } from "../utils/whatsapp";
+import { useOrderFlow } from "../context/OrderFlowContext";
 
 export default function Cart() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, total } = useCart();
+  const { requestWhatsApp } = useOrderFlow();
 
   useEffect(() => {
     if (isOpen) {
@@ -19,7 +21,7 @@ export default function Cart() {
 
   const handleCheckout = () => {
     const message = buildCartMessage(items, subtotal, SITE_CONFIG.DOMICILIO_PRICE, total);
-    window.open(whatsAppLinkFor(message), "_blank");
+    requestWhatsApp(message);
   };
 
   return (

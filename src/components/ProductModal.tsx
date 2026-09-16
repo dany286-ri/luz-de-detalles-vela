@@ -3,7 +3,8 @@ import type { Product } from "../types/product";
 import { formatCOP } from "../config/site.config";
 import { useCart } from "../context/CartContext";
 import PersonalizationForm from "./PersonalizationForm";
-import { buildSingleProductMessage, whatsAppLinkFor } from "../utils/whatsapp";
+import { buildSingleProductMessage } from "../utils/whatsapp";
+import { useOrderFlow } from "../context/OrderFlowContext";
 
 interface ProductModalProps {
   product: Product;
@@ -12,6 +13,7 @@ interface ProductModalProps {
 
 export default function ProductModal({ product, onClose }: ProductModalProps) {
   const { addItem } = useCart();
+  const { requestWhatsApp } = useOrderFlow();
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [values, setValues] = useState<Record<string, string>>({});
@@ -35,7 +37,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
   const handleWhatsApp = () => {
     const message = buildSingleProductMessage(product.name, product.presentation, quantity, product.price, values);
-    window.open(whatsAppLinkFor(message), "_blank");
+    requestWhatsApp(message);
   };
 
   return (

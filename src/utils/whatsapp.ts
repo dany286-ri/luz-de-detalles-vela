@@ -1,4 +1,4 @@
-import { formatCOP, SITE_CONFIG, buildWhatsAppLink } from "../config/site.config";
+import { formatCOP, SITE_CONFIG } from "../config/site.config";
 import type { CartItem } from "../context/CartContext";
 
 const FIELD_LABELS: Record<string, string> = {
@@ -73,12 +73,11 @@ export function buildCartMessage(items: CartItem[], subtotal: number, domicilio:
   return lines.join("\n");
 }
 
-export function whatsAppLinkFor(message: string): string {
-  return buildWhatsAppLink(message);
+/** Mensaje genérico para cotizar un evento, un tema o solo saludar. */
+export function buildQuoteMessage(topic: string): string {
+  return `Hola, quiero cotizar un pedido para: ${topic}. ¿Me ayudas a armarlo?`;
 }
 
-export function whatsAppQuoteLink(topic: string): string {
-  return buildWhatsAppLink(
-    `Hola, quiero cotizar un pedido para: ${topic}. ¿Me ayudas a armarlo?`
-  );
+export function buildGreetingMessage(): string {
+  return `Hola, vi ${SITE_CONFIG.BRAND_NAME} y quiero más información.`;
 }

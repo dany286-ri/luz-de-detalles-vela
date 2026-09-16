@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Reveal from "./Reveal";
-import { SITE_CONFIG, formatCOP } from "../config/site.config";
+import { SITE_CONFIG, formatCOP, PAYMENT_METHODS } from "../config/site.config";
 
 const FAQS = [
   {
-    q: "¿Cómo hago un pedido?",
-    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y confirmas por WhatsApp. Ahí coordinamos el pago del anticipo y la entrega.",
+    q: "¿Con cuánto tiempo debo realizar mi pedido?",
+    a: "Con mínimo 2 días de anticipación. Como cada detalle se elabora bajo pedido, el tiempo de entrega habitual es de 3 a 4 días hábiles desde que confirmas el anticipo.",
   },
   {
-    q: "¿Cuánto tiempo tarda mi pedido?",
-    a: "Como cada detalle se elabora bajo pedido, el tiempo de entrega es de 3 a 4 días hábiles desde que confirmas el anticipo.",
+    q: "¿Cómo hago un pedido?",
+    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y confirmas por WhatsApp. Ahí coordinamos el pago del anticipo y la entrega. Si tienes dos sedes cerca (Tunja o Bogotá), te preguntamos cuál te queda mejor para dirigirte al WhatsApp correcto.",
   },
   {
     q: "¿Necesito pagar por adelantado?",
@@ -24,8 +24,12 @@ const FAQS = [
     a: `El domicilio tiene un costo de ${formatCOP(SITE_CONFIG.DOMICILIO_PRICE)} en ${SITE_CONFIG.CITY}, y se suma automáticamente al finalizar tu pedido.`,
   },
   {
-    q: "¿Puedo comprar solo una vela de un pack?",
-    a: "Los packs se venden completos, al precio indicado por el conjunto (por ejemplo, Pack x5). No vendemos unidades sueltas de estos packs.",
+    q: "¿Los precios de los packs son por unidad?",
+    a: "No. El precio mostrado es por el paquete completo (por ejemplo, Pack x5 · $8.000 es por las 5 velas juntas, no por unidad). No vendemos unidades sueltas de estos packs.",
+  },
+  {
+    q: "¿Cómo puedo realizar el pago?",
+    a: `Aceptamos ${PAYMENT_METHODS.join(", ")}. Coordinamos el método exacto por WhatsApp al confirmar tu pedido.`,
   },
   {
     q: "¿Hacen pedidos grandes para eventos o empresas?",
@@ -37,7 +41,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-24">
+    <section id="faq" className="py-16 md:py-24">
       <div className="max-w-8xl mx-auto px-5 md:px-8 max-w-3xl">
         <Reveal className="mb-10 md:mb-14">
           <p className="uppercase tracking-[0.25em] text-xs text-gold font-medium mb-3">Preguntas frecuentes</p>

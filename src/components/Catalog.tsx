@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { PRODUCTS, CATEGORY_LABELS } from "../data/products";
 import type { Product } from "../types/product";
 import ProductCard from "./ProductCard";
@@ -7,11 +7,11 @@ import Reveal from "./Reveal";
 
 interface CatalogProps {
   onOpen: (product: Product) => void;
+  active: string;
+  onChangeActive: (category: string) => void;
 }
 
-export default function Catalog({ onOpen }: CatalogProps) {
-  const [active, setActive] = useState("todos");
-
+export default function Catalog({ onOpen, active, onChangeActive }: CatalogProps) {
   const categories = useMemo(() => {
     const set = new Set<string>();
     PRODUCTS.forEach((p) => p.category.forEach((c) => set.add(c)));
@@ -24,11 +24,11 @@ export default function Catalog({ onOpen }: CatalogProps) {
     <section id="catalogo" className="py-16 md:py-24 bg-ivory/60">
       <div className="max-w-8xl mx-auto px-5 md:px-8">
         <Reveal className="max-w-xl mb-10 md:mb-12">
-          <p className="uppercase tracking-[0.25em] text-xs text-gold font-medium mb-3">Catálogo completo</p>
-          <h2 className="font-serif text-3xl md:text-4xl text-ink">Todos los detalles</h2>
+          <p className="uppercase tracking-[0.25em] text-xs text-gold font-medium mb-3">Nuestros detalles</p>
+          <h2 className="font-serif text-3xl md:text-4xl text-ink">Elige el diseño que más te guste y personalízalo para hacerlo único</h2>
         </Reveal>
 
-        <CatalogFilters active={active} onChange={setActive} categories={categories} />
+        <CatalogFilters active={active} onChange={onChangeActive} categories={categories} />
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {filtered.map((product, idx) => (

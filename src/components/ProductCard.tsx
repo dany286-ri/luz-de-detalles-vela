@@ -46,14 +46,25 @@ export default function ProductCard({ product, onOpen }: ProductCardProps) {
       <div className="p-4 md:p-5 flex flex-col flex-1">
         <h3 className="font-serif text-lg text-ink leading-tight">{product.name}</h3>
         <p className="text-xs text-charcoal/60 mt-0.5">{product.presentation}</p>
-        <p className="text-sm text-charcoal/70 mt-2 leading-snug flex-1">{product.shortDescription}</p>
+        {product.emotionalHook ? (
+          <p className="text-sm text-gold mt-2 leading-snug flex-1 italic">{product.emotionalHook}</p>
+        ) : (
+          <p className="text-sm text-charcoal/70 mt-2 leading-snug flex-1">{product.shortDescription}</p>
+        )}
+        {product.personalizable && (
+          <span className="inline-flex items-center gap-1 text-[11px] text-gold mt-2 tracking-wide w-fit">
+            ✨ Personalizable
+          </span>
+        )}
         <div className="flex items-center justify-between gap-2 mt-4 pt-3 border-t border-ink/5">
-          <span className="font-serif text-lg sm:text-xl text-ink whitespace-nowrap">{formatCOP(product.price)}</span>
+          <span className="font-serif text-lg sm:text-xl text-ink whitespace-nowrap">
+            {formatCOP(product.price)}
+          </span>
           <span
-            className="shrink-0 w-7 h-7 rounded-full border border-ink/15 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-cream group-hover:border-gold transition-colors"
+            className="shrink-0 h-8 px-3.5 rounded-full border border-ink/15 flex items-center justify-center text-xs text-gold gap-1 group-hover:bg-gold group-hover:text-cream group-hover:border-gold transition-colors"
             aria-hidden
           >
-            →
+            Pedir →
           </span>
         </div>
       </div>

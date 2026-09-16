@@ -24,6 +24,8 @@ export interface Product {
   price: number;
   description: string;
   shortDescription: string;
+  /** Frase emocional corta para mostrar en vez de (o encima de) la descripción corta, ej. "🎓 Un logro que merece quedarse para siempre" */
+  emotionalHook?: string;
   category: ProductCategory[];
   /** Imagen principal + galería (rutas ya importadas como módulos) */
   images: string[];

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { SITE_CONFIG } from "../config/site.config";
 import { useCart } from "../context/CartContext";
+import { useOrderFlow } from "../context/OrderFlowContext";
+import { buildGreetingMessage } from "../utils/whatsapp";
 
 const NAV_LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#catalogo", label: "Catálogo" },
-  { href: "#personalizados", label: "Personalizados" },
-  { href: "#eventos", label: "Eventos" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#ocasiones", label: "Ocasiones" },
+  { href: "#como-funciona", label: "Cómo funciona" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { itemCount, openCart } = useCart();
+  const { requestWhatsApp } = useOrderFlow();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -59,14 +62,12 @@ export default function Header() {
           >
             Instagram
           </a>
-          <a
-            href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER.replace(/\D/g, "")}`}
-            target="_blank"
-            rel="noreferrer"
+          <button
+            onClick={() => requestWhatsApp(buildGreetingMessage())}
             className="text-charcoal/70 hover:text-gold transition-colors"
           >
             WhatsApp
-          </a>
+          </button>
           <button
             onClick={openCart}
             className="relative flex items-center gap-2 border border-ink/15 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors duration-200"
@@ -83,11 +84,7 @@ export default function Header() {
 
         {/* Mobile actions */}
         <div className="flex md:hidden items-center gap-4">
-          <button
-            onClick={openCart}
-            className="relative"
-            aria-label="Ver pedido"
-          >
+          <button onClick={openCart} className="relative" aria-label="Ver pedido">
             <span className="text-xl">🛍️</span>
             {itemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-gold text-cream text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
@@ -95,11 +92,7 @@ export default function Header() {
               </span>
             )}
           </button>
-          <button
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Abrir menú"
-            className="text-2xl leading-none"
-          >
+          <button onClick={() => setMenuOpen((o) => !o)} aria-label="Abrir menú" className="text-2xl leading-none">
             {menuOpen ? "✕" : "☰"}
           </button>
         </div>
@@ -126,14 +119,15 @@ export default function Header() {
             <a href={SITE_CONFIG.INSTAGRAM_URL} target="_blank" rel="noreferrer" className="text-charcoal/70">
               Instagram
             </a>
-            <a
-              href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER.replace(/\D/g, "")}`}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                requestWhatsApp(buildGreetingMessage());
+              }}
               className="text-charcoal/70"
             >
               WhatsApp
-            </a>
+            </button>
           </div>
         </nav>
       </div>

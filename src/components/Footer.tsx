@@ -1,22 +1,26 @@
 import React from "react";
 import { SITE_CONFIG } from "../config/site.config";
+import { useOrderFlow } from "../context/OrderFlowContext";
+import { buildGreetingMessage } from "../utils/whatsapp";
 
 const LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#catalogo", label: "Catálogo" },
-  { href: "#personalizados", label: "Personalizados" },
-  { href: "#eventos", label: "Eventos" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#ocasiones", label: "Ocasiones" },
+  { href: "#como-funciona", label: "Cómo funciona" },
+  { href: "#faq", label: "Preguntas frecuentes" },
 ];
 
 export default function Footer() {
+  const { requestWhatsApp } = useOrderFlow();
+
   return (
     <footer className="bg-ink text-cream/80 pt-14 pb-8">
       <div className="max-w-8xl mx-auto px-5 md:px-8 grid sm:grid-cols-3 gap-10 mb-10">
         <div>
           <p className="font-serif text-2xl text-cream mb-2">{SITE_CONFIG.BRAND_NAME}</p>
           <p className="text-sm text-cream/60">{SITE_CONFIG.BRAND_TAGLINE}</p>
-          <p className="text-sm text-cream/60 mt-1">{SITE_CONFIG.CITY}</p>
+          <p className="text-sm text-cream/60 mt-1">Tunja y Bogotá</p>
         </div>
 
         <div>
@@ -36,14 +40,9 @@ export default function Footer() {
           <p className="text-xs uppercase tracking-widest text-cream/50 mb-3">Contacto</p>
           <ul className="space-y-2 text-sm">
             <li>
-              <a
-                href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-gold-soft transition-colors"
-              >
+              <button onClick={() => requestWhatsApp(buildGreetingMessage())} className="hover:text-gold-soft transition-colors">
                 WhatsApp
-              </a>
+              </button>
             </li>
             <li>
               <a href={SITE_CONFIG.INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-gold-soft transition-colors">

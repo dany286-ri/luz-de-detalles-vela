@@ -2,6 +2,12 @@ import React from "react";
 import Reveal from "./Reveal";
 import velaGrandeX6 from "../assets/images/vela-grande-x6.jpg";
 
+const INDICATORS = [
+  { emoji: "🕯️", text: "Personalizados" },
+  { emoji: "📦", text: "Bajo pedido" },
+  { emoji: "✨", text: "Para ocasiones especiales" },
+];
+
 export default function Hero() {
   return (
     <section id="inicio" className="relative pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
@@ -16,21 +22,29 @@ export default function Hero() {
             iluminan momentos
           </h1>
           <p className="text-charcoal/75 text-base md:text-lg max-w-md mb-9 leading-relaxed">
-            Velas y detalles personalizados creados para regalar, celebrar y recordar.
+            Velas personalizadas para regalar, celebrar y convertir momentos especiales en recuerdos.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 mb-8">
             <a
               href="#catalogo"
               className="inline-flex items-center justify-center bg-ink text-cream px-7 py-3.5 rounded-full text-sm tracking-wide hover:bg-charcoal transition-colors duration-200"
             >
-              Ver colección
+              Ver catálogo
             </a>
             <a
               href="#personalizados"
               className="inline-flex items-center justify-center border border-ink/20 text-ink px-7 py-3.5 rounded-full text-sm tracking-wide hover:border-gold hover:text-gold transition-colors duration-200"
             >
-              Personalizar mi detalle
+              Personalizar mi pedido
             </a>
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {INDICATORS.map((ind) => (
+              <span key={ind.text} className="inline-flex items-center gap-2 text-sm text-charcoal/65">
+                <span aria-hidden>{ind.emoji}</span>
+                {ind.text}
+              </span>
+            ))}
           </div>
         </Reveal>
 

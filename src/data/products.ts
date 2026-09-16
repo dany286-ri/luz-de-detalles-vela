@@ -96,6 +96,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Pack x10 unidades",
     price: 30000,
     shortDescription: "16 cm de alto, se puede personalizar.",
+    emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
     description:
       "Pack de 10 velas grandes de 16 cm de alto, se puede personalizar cada una. Ideal para eventos, mesas de regalo o detalles por cantidad.",
     category: ["regalos", "navidad"],
@@ -110,6 +111,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Pack x10 unidades",
     price: 22000,
     shortDescription: "10 velas de 12 cm presentadas en caja.",
+    emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
     description:
       "10 velas de 12 cm presentadas en una caja lista para regalar — no necesitas envolver nada más. Cada vela se personaliza con una palabra distinta, perfecta como detalle grupal o decorativo.",
     category: ["regalos", "navidad"],
@@ -124,6 +126,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Unidad",
     price: 7500,
     shortDescription: "Con foto, nombre y año. Incluye tarjeta.",
+    emotionalHook: "🎓 Un logro que merece quedarse para siempre.",
     description:
       "Una vela de 16 cm personalizada con foto, nombre y año de grado, acompañada de una tarjeta con mensaje. El detalle perfecto para celebrar ese logro.",
     category: ["graduaciones"],
@@ -138,6 +141,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Unidad",
     price: 7800,
     shortDescription: "Personalizada con el nombre del bebé. Incluye tarjeta.",
+    emotionalHook: "🍼 Un pequeño detalle para darle la bienvenida a alguien muy especial.",
     description:
       "Una vela personalizada con el nombre del bebé y una tarjeta con mensaje — un recuerdo pequeño y significativo para acompañar el momento de la llegada.",
     category: ["baby-shower"],
@@ -151,6 +155,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Unidad (pedidos de 50 o más)",
     price: 7000,
     shortDescription: "Mismo detalle, precio especial para pedidos grandes.",
+    emotionalHook: "🍼 Un pequeño detalle para darle la bienvenida a alguien muy especial.",
     description:
       "El mismo detalle de Baby Shower personalizado con el nombre del bebé, a precio especial cuando el pedido es de 50 unidades o más — ideal como recuerdo para todos los invitados.",
     category: ["baby-shower"],
@@ -165,6 +170,7 @@ export const PRODUCTS: Product[] = [
     presentation: "Unidad",
     price: 11000,
     shortDescription: "Con foto y nombre de tu mascota. Incluye listón.",
+    emotionalHook: "🐾 Porque ellos también hacen parte de nuestros recuerdos.",
     description:
       "Una esfera navideña de acrílico transparente con la foto y el nombre de tu mascota — un recuerdo tierno para colgar en el árbol. Incluye listón para colgar.",
     category: ["navidad", "mascotas"],
