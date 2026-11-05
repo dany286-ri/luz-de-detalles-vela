@@ -55,7 +55,7 @@ export interface StoredItem {
   photos: StoredPhoto[];
 }
 
-export const PAYMENT_KINDS = ["Anticipo", "Saldo", "Pago completo", "Otro"] as const;
+export const PAYMENT_KINDS = ["Pago completo", "Saldo", "Otro"] as const;
 export type PaymentKind = (typeof PAYMENT_KINDS)[number];
 
 /** Un pago que el administrador verificó y registró. */
@@ -86,12 +86,11 @@ export interface StoredOrder {
   cancelled?: { at: string; reason: string };
 }
 
-export type OrderStatus = "pendiente" | "parcial" | "anticipo" | "pagado" | "cancelado";
+export type OrderStatus = "pendiente" | "parcial" | "pagado" | "cancelado";
 
 export const STATUS_LABELS: Record<OrderStatus, string> = {
   pendiente: "Pendiente de verificación",
   parcial: "Pago parcial",
-  anticipo: "Anticipo verificado",
   pagado: "Pagado completo",
   cancelado: "Cancelado",
 };
@@ -110,7 +109,6 @@ export function orderStatus(order: StoredOrder): OrderStatus {
   if (order.cancelled) return "cancelado";
   const paid = paidTotal(order);
   if (paid >= order.totals.total) return "pagado";
-  if (paid >= order.totals.deposit) return "anticipo";
   if (paid > 0) return "parcial";
   return "pendiente";
 }

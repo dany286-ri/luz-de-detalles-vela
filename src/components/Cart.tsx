@@ -127,7 +127,7 @@ export default function Cart() {
               <span>{formatCOP(total)}</span>
             </div>
             <p className="text-xs text-charcoal/50 pt-1">
-              Se confirma el pedido con un anticipo del 50%, que pagas por Nequi en el siguiente paso.
+              El pedido se paga completo por Nequi en el siguiente paso.
             </p>
             <button
               onClick={openCheckout}

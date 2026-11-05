@@ -144,12 +144,26 @@ export default function Checkout() {
     closeCheckout();
   };
 
+  /** Comprobante enviado desde el paso de pago, antes de registrar el pedido (aún no existe número de pedido). */
+  const draftReceiptWhatsApp = (sedeKey: LocationKey) => {
+    const msg = [
+      `Hola, te envío el comprobante de pago de mi pedido en ${SITE_CONFIG.BRAND_NAME}.`,
+      `Nombre: ${customer.nombre.trim() || "(escribe tu nombre)"}`,
+      customer.celular.replace(/\D/g, "") ? `Celular: ${customer.celular.replace(/\D/g, "")}` : "",
+      `Valor pagado por Nequi: ${formatCOP(totals.deposit)}`,
+      "(Adjunto la captura del comprobante en este chat)",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    return buildWhatsAppLinkForSede(sedeKey, msg);
+  };
+
   /** WhatsApp de la sede elegida, con el número de pedido para que el comprobante se asocie fácil. */
   const receiptWhatsApp = (record: OrderRecord) => {
     const msg = [
       `Hola, te envío el comprobante de pago de mi pedido ${record.id} en ${SITE_CONFIG.BRAND_NAME}.`,
       `Nombre: ${record.customer.nombre.trim()}`,
-      `Anticipo pagado por Nequi: ${formatCOP(record.totals.deposit)}`,
+      `Valor pagado por Nequi: ${formatCOP(record.totals.deposit)}`,
       record.photoCount > 0 ? "Ya subí las fotos de mis velas en la página." : "",
       "(Adjunto la captura del comprobante en este chat)",
     ]
@@ -344,13 +358,23 @@ export default function Checkout() {
           {step === 2 && sede && !emptyCart && (
             <>
               <PaymentCard sede={sede} onChangeSede={chooseSede} totals={totals} />
-              <OrderSummary totals={totals} />
+              <OrderSummary totals={totals} customerName={customer.nombre} />
               <div className="rounded-2xl border border-[#25D366]/40 bg-[#25D366]/10 p-4">
                 <p className="text-sm font-medium text-ink">📲 Envía tu comprobante por WhatsApp</p>
                 <p className="text-xs text-charcoal/70 mt-1 leading-relaxed">
                   Después de transferir, toma una captura del comprobante y envíala por WhatsApp a la sede{" "}
-                  <strong>{LOCATIONS[sede].label}</strong>. Al enviar tu pedido te daremos el botón directo, con tu
-                  número de pedido ya escrito.
+                  <strong>{LOCATIONS[sede].label}</strong>. El mensaje ya lleva tu nombre y el valor pagado.
+                </p>
+                <a
+                  href={draftReceiptWhatsApp(sede)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-medium text-white hover:brightness-95 transition"
+                >
+                  Enviar comprobante a la sede {LOCATIONS[sede].label}
+                </a>
+                <p className="text-xs text-charcoal/55 mt-2 text-center">
+                  Luego pulsa «Enviar mi pedido» aquí abajo para registrarlo.
                 </p>
               </div>
 
@@ -362,7 +386,7 @@ export default function Checkout() {
                   className="mt-0.5 h-4 w-4 accent-[#2B2724]"
                 />
                 <span className="text-sm text-charcoal/80">
-                  <span className="block text-ink font-medium">Ya realicé la transferencia del anticipo</span>
+                  <span className="block text-ink font-medium">Ya realicé la transferencia del pago completo</span>
                   <span className="block text-xs text-charcoal/60 mt-0.5">
                     Esto no confirma el pago: tu pedido queda «{`Pendiente de verificación`}» hasta que recibamos tu
                     comprobante por WhatsApp y revisemos la transferencia.
@@ -397,7 +421,7 @@ export default function Checkout() {
                 <h3 className="font-serif text-2xl md:text-3xl text-ink">¡Recibimos tu pedido!</h3>
                 <p className="text-sm text-charcoal/70 mt-2">
                   Tu pedido quedó <strong className="text-ink">pendiente de verificación</strong>. Lo confirmaremos
-                  cuando revisemos tu anticipo de {formatCOP(order.totals.deposit)}.
+                  cuando revisemos tu pago de {formatCOP(order.totals.deposit)}.
                 </p>
               </div>
 
@@ -407,10 +431,11 @@ export default function Checkout() {
               </div>
 
               <div className="text-left">
-                <OrderSummary totals={order.totals} registered />
+                <OrderSummary totals={order.totals} customerName={order.customer.nombre} />
               </div>
 
               <ul className="text-left text-sm text-charcoal/75 space-y-1.5">
+                <li>• A nombre de: {order.customer.nombre.trim()}</li>
                 <li>• Sede: {order.sedeLabel}</li>
                 <li>• Entrega solicitada para el {prettyDate(order.customer.fechaEntrega)}</li>
                 {order.photoCount > 0 && <li>• Fotos recibidas: {order.photoCount} 📷</li>}

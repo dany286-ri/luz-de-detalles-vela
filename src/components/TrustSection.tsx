@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 const POINTS = [
   { emoji: "✋", title: "Hecho a mano", text: "Cada vela se elabora artesanalmente, con atención al detalle." },
   { emoji: "📝", title: "100% personalizable", text: "Nombres, mensajes y fechas a tu gusto en la mayoría de productos." },
-  { emoji: "🔒", title: "Pedido confirmado con anticipo", text: "Reservas tu pedido con el 50% y pagas el resto al recibirlo." },
+  { emoji: "🔒", title: "Pago fácil y seguro", text: "Pagas por Nequi a la sede que elijas y confirmamos tu pedido al verificar el comprobante." },
   { emoji: "💬", title: "Atención directa por WhatsApp", text: "Resolvemos tus dudas y coordinamos la entrega contigo." },
 ];
 

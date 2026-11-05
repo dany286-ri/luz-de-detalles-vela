@@ -168,7 +168,6 @@ async function notifyByEmail(order: OrderRecord): Promise<void> {
       fecha_entrega: order.customer.fechaEntrega,
       productos: order.productsText,
       total: String(order.totals.total),
-      anticipo_50: String(order.totals.deposit),
       fotos: String(order.photoCount),
     });
     await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() });

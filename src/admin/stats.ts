@@ -55,7 +55,7 @@ export interface Summary {
   /** Lo que falta por cobrar de pedidos que siguen activos. */
   receivable: number;
   pendingCount: number;
-  /** Anticipo que se espera de los pedidos aún sin ningún pago verificado. */
+  /** Valor que se espera de los pedidos aún sin ningún pago verificado. */
   pendingDeposit: number;
   byMonth: { month: string; count: number; total: number }[];
 }

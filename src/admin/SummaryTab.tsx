@@ -40,11 +40,11 @@ export default function SummaryTab({ summary }: { summary: Summary }) {
       <section>
         <h2 className="font-serif text-xl text-ink mb-3">Por cobrar y pendientes</h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Card label="Saldo por cobrar" value={formatCOP(summary.receivable)} hint="De pedidos activos (no cancelados)" />
+          <Card label="Por cobrar" value={formatCOP(summary.receivable)} hint="De pedidos activos (no cancelados)" />
           <Card
             label="Pendientes de verificación"
             value={String(summary.pendingCount)}
-            hint={`Anticipos esperados: ${formatCOP(summary.pendingDeposit)}`}
+            hint={`Valor esperado: ${formatCOP(summary.pendingDeposit)}`}
           />
         </div>
       </section>

@@ -15,7 +15,7 @@ interface Props {
 const STEPS = [
   "Abre tu app Nequi y elige la opción para enviar plata.",
   "Pega el número de arriba (toca «Copiar número»).",
-  "Escribe el valor del anticipo y confirma la transferencia.",
+  "Escribe el valor total de tu pedido y confirma la transferencia.",
   "Toma una captura del comprobante: la enviarás por WhatsApp a la sede.",
 ];
 
@@ -108,7 +108,7 @@ export default function PaymentCard({ sede, onChangeSede, totals }: Props) {
       <div className="mt-4 rounded-2xl border border-gold/40 bg-gold/10 p-4 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-cocoa">Valor a pagar ahora</p>
         <p className="font-serif text-4xl text-ink mt-1">{formatCOP(totals.deposit)}</p>
-        <p className="text-xs text-charcoal/65 mt-1">Es el anticipo del 50% de tu pedido ({formatCOP(totals.total)})</p>
+        <p className="text-xs text-charcoal/65 mt-1">Es el valor completo de tu pedido, domicilio incluido</p>
       </div>
 
       {/* Instrucciones */}
@@ -126,7 +126,7 @@ export default function PaymentCard({ sede, onChangeSede, totals }: Props) {
       <div className="mt-5 space-y-1.5 rounded-xl bg-cream/80 border border-ink/10 px-4 py-3 text-xs text-charcoal/70 leading-relaxed">
         <p>💡 Recuerda realizar tu transferencia al Nequi de la sede que seleccionaste.</p>
         <p>💡 Una vez realices el pago, envía tu comprobante por WhatsApp a la sede para que podamos verificarlo.</p>
-        <p>💡 Tu pedido quedará confirmado una vez verifiquemos el anticipo.</p>
+        <p>💡 Tu pedido quedará confirmado una vez verifiquemos tu pago.</p>
       </div>
 
       {/* Aviso de copiado */}

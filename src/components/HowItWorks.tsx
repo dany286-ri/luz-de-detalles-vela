@@ -14,8 +14,8 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Confirma con el anticipo",
-    text: "Reservamos tu pedido con un anticipo del 50%. El resto se paga al recibirlo.",
+    title: "Confirma con tu pago",
+    text: "Pagas el total de tu pedido por Nequi y envías el comprobante por WhatsApp para confirmarlo.",
   },
   {
     number: "04",

@@ -17,8 +17,8 @@ export const SITE_CONFIG = {
   INSTAGRAM_URL: "https://www.instagram.com/luzde.detalles/",
   EMAIL: "luzdedetalles@gmail.com",
   DOMICILIO_PRICE: 5000,
-  /** Porcentaje que se paga por adelantado para confirmar un pedido personalizado. */
-  DEPOSIT_PERCENT: 50,
+  /** Porcentaje del total que se paga ahora por Nequi. 100 = el pedido se paga completo (sin saldo pendiente). */
+  DEPOSIT_PERCENT: 100,
   /** Días mínimos de anticipación para pedidos (se usa en la fecha mínima de entrega). */
   MIN_LEAD_DAYS: 2,
   CITY: "Tunja, Boyacá",

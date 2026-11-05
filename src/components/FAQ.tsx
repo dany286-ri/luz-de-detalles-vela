@@ -5,15 +5,15 @@ import { SITE_CONFIG, formatCOP } from "../config/site.config";
 const FAQS = [
   {
     q: "¿Con cuánto tiempo debo realizar mi pedido?",
-    a: "Con mínimo 2 días de anticipación. Como cada detalle se elabora bajo pedido, el tiempo de entrega habitual es de 3 a 4 días hábiles desde que confirmas el anticipo.",
+    a: "Con mínimo 2 días de anticipación. Como cada detalle se elabora bajo pedido, el tiempo de entrega habitual es de 3 a 4 días hábiles desde que confirmamos tu pago.",
   },
   {
     q: "¿Cómo hago un pedido?",
-    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y lo agregas a tu pedido. Luego dejas tus datos, subes las fotos que quieras en tus velas, eliges la sede (Tunja o Bogotá) y pagas el anticipo por Nequi. Tu pedido queda pendiente de verificación hasta que recibamos tu comprobante por WhatsApp y revisemos tu transferencia. Si prefieres, también puedes coordinarlo por WhatsApp.",
+    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y lo agregas a tu pedido. Luego dejas tus datos, subes las fotos que quieras en tus velas, eliges la sede (Tunja o Bogotá) y pagas el total por Nequi. Tu pedido queda pendiente de verificación hasta que recibamos tu comprobante por WhatsApp y revisemos tu transferencia. Si prefieres, también puedes coordinarlo por WhatsApp.",
   },
   {
     q: "¿Necesito pagar por adelantado?",
-    a: "Sí. Para confirmar y empezar a elaborar tu pedido pedimos un anticipo del 50%. El resto se paga al recibirlo.",
+    a: "Sí. Para confirmar y empezar a elaborar tu pedido se paga el valor completo (productos más domicilio) por adelantado, por Nequi.",
   },
   {
     q: "¿Puedo personalizar cualquier vela?",
@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo puedo realizar el pago?",
-    a: "En la página pagas el anticipo del 50% por transferencia Nequi, al número de la sede que elijas (Tunja o Bogotá). Después envías el comprobante por WhatsApp a la sede para que lo verifiquemos. Si prefieres otro método, escríbenos por WhatsApp y lo coordinamos.",
+    a: "En la página pagas el total de tu pedido por transferencia Nequi, al número de la sede que elijas (Tunja o Bogotá). Después envías el comprobante por WhatsApp a la sede para que lo verifiquemos. Si prefieres otro método, escríbenos por WhatsApp y lo coordinamos.",
   },
   {
     q: "¿Hacen pedidos grandes para eventos o empresas?",

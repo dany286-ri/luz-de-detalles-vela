@@ -16,7 +16,6 @@ import { localToday } from "./stats";
 const STATUS_STYLE: Record<OrderStatus, string> = {
   pendiente: "bg-amber-100 text-amber-900",
   parcial: "bg-orange-100 text-orange-900",
-  anticipo: "bg-sky-100 text-sky-900",
   pagado: "bg-emerald-100 text-emerald-900",
   cancelado: "bg-stone-200 text-stone-600",
 };
@@ -24,7 +23,6 @@ const STATUS_STYLE: Record<OrderStatus, string> = {
 const FILTERS: { key: "todos" | OrderStatus; label: string }[] = [
   { key: "todos", label: "Todos" },
   { key: "pendiente", label: "Pendientes" },
-  { key: "anticipo", label: "Con anticipo" },
   { key: "parcial", label: "Pago parcial" },
   { key: "pagado", label: "Pagados" },
   { key: "cancelado", label: "Cancelados" },
@@ -54,8 +52,8 @@ function OrderDetail({ initial, onChanged }: { initial: StoredOrder; onChanged: 
   const [busy, setBusy] = useState(false);
 
   const paid = paidTotal(order);
-  const [amount, setAmount] = useState(String(paid === 0 ? order.totals.deposit : balanceDue(order)));
-  const [kind, setKind] = useState<PaymentKind>(paid === 0 ? "Anticipo" : "Saldo");
+  const [amount, setAmount] = useState(String(balanceDue(order)));
+  const [kind, setKind] = useState<PaymentKind>(paid === 0 ? "Pago completo" : "Saldo");
   const [paidAt, setPaidAt] = useState(localToday());
   const [note, setNote] = useState("");
   const [voidingId, setVoidingId] = useState<string | null>(null);
@@ -78,8 +76,8 @@ function OrderDetail({ initial, onChanged }: { initial: StoredOrder; onChanged: 
     setOrder(o);
     onChanged(o);
     const p = paidTotal(o);
-    setAmount(String(p === 0 ? o.totals.deposit : balanceDue(o)));
-    setKind(p === 0 ? "Anticipo" : "Saldo");
+    setAmount(String(balanceDue(o)));
+    setKind(p === 0 ? "Pago completo" : "Saldo");
   };
 
   const run = async (fn: () => Promise<{ order: StoredOrder }>) => {
@@ -132,9 +130,8 @@ function OrderDetail({ initial, onChanged }: { initial: StoredOrder; onChanged: 
             Nequi de la sede {order.sedeLabel}: <strong>{formatPhone(order.nequiDestino)}</strong>
           </p>
           <p className="text-charcoal/80">Total: {formatCOP(order.totals.total)} (domicilio {formatCOP(order.totals.delivery)})</p>
-          <p className="text-charcoal/80">Anticipo 50%: {formatCOP(order.totals.deposit)}</p>
           <p className="text-charcoal/80">Verificado: {formatCOP(paid)}</p>
-          <p className="font-medium text-ink">Saldo pendiente: {formatCOP(balanceDue(order))}</p>
+          <p className="font-medium text-ink">Falta por cobrar: {formatCOP(balanceDue(order))}</p>
         </div>
       </div>
 

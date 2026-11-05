@@ -4,16 +4,16 @@ export interface OrderTotals {
   subtotal: number;
   delivery: number;
   total: number;
-  /** Anticipo que se paga para confirmar el pedido (porcentaje del total, redondeado hacia arriba al peso). */
+  /** Valor que se paga ahora por Nequi. Hoy es el 100% del total (DEPOSIT_PERCENT), redondeado hacia arriba al peso. */
   deposit: number;
-  /** Lo que queda por pagar según las condiciones acordadas para la entrega. */
+  /** Lo que queda por pagar después de este pago (con pago completo es $0). */
   balance: number;
 }
 
 /**
  * Único lugar donde se calculan los valores del pedido.
- * El anticipo es el 50% del TOTAL (productos + domicilio) y el saldo es lo que falta,
- * así anticipo + saldo siempre suman exactamente el total.
+ * Se paga el TOTAL (productos + domicilio). Si DEPOSIT_PERCENT vuelve a ser menor que 100,
+ * `deposit` + `balance` siempre suman exactamente el total.
  */
 export function calcOrderTotals(subtotal: number): OrderTotals {
   const delivery = subtotal > 0 ? SITE_CONFIG.DOMICILIO_PRICE : 0;

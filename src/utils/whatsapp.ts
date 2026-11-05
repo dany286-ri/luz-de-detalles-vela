@@ -77,7 +77,7 @@ export function buildCartMessage(items: CartItem[], subtotal: number, domicilio:
   lines.push(`Domicilio: ${formatCOP(domicilio)}`);
   lines.push(`Total: ${formatCOP(total)}`);
   lines.push("");
-  lines.push("Quedo atento(a) para confirmar el anticipo. ¡Gracias!");
+  lines.push("Quedo atento(a) para confirmar el pago. ¡Gracias!");
   return lines.join("\n");
 }
 
