@@ -1,14 +1,18 @@
 import React from "react";
 import type { PersonalizationField } from "../types/product";
+import type { ItemPhoto } from "../utils/photos";
+import PhotoUploader from "./PhotoUploader";
 
 interface PersonalizationFormProps {
   fields: PersonalizationField[];
   values: Record<string, string>;
   onChange: (key: string, value: string) => void;
+  photos: ItemPhoto[];
+  onPhotosChange: (photos: ItemPhoto[]) => void;
 }
 
 /** Renderiza dinámicamente los campos de personalización de un producto. */
-export default function PersonalizationForm({ fields, values, onChange }: PersonalizationFormProps) {
+export default function PersonalizationForm({ fields, values, onChange, photos, onPhotosChange }: PersonalizationFormProps) {
   if (!fields || fields.length === 0) return null;
 
   return (
@@ -25,7 +29,9 @@ export default function PersonalizationForm({ fields, values, onChange }: Person
               {field.label}
               {field.required && <span className="text-gold"> *</span>}
             </label>
-            {field.type === "textarea" ? (
+            {field.type === "photos" ? (
+              <PhotoUploader value={photos} onChange={onPhotosChange} max={field.maxPhotos ?? 5} />
+            ) : field.type === "textarea" ? (
               <textarea
                 className={`${commonClasses} resize-none`}
                 rows={2}

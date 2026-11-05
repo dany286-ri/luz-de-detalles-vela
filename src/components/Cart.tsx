@@ -5,7 +5,7 @@ import { buildCartMessage } from "../utils/whatsapp";
 import { useOrderFlow } from "../context/OrderFlowContext";
 
 export default function Cart() {
-  const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, total } = useCart();
+  const { items, isOpen, closeCart, openCheckout, removeItem, updateQuantity, subtotal, total } = useCart();
   const { requestWhatsApp } = useOrderFlow();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Cart() {
     };
   }, [isOpen]);
 
-  const handleCheckout = () => {
+  const handleWhatsApp = () => {
     const message = buildCartMessage(items, subtotal, SITE_CONFIG.DOMICILIO_PRICE, total);
     requestWhatsApp(message);
   };
@@ -69,6 +69,11 @@ export default function Cart() {
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-ink truncate">{item.product.name}</p>
                       <p className="text-xs text-charcoal/55">{item.product.presentation}</p>
+                      {item.photos && item.photos.length > 0 && (
+                        <p className="text-xs text-gold mt-0.5">
+                          📷 {item.photos.length} {item.photos.length === 1 ? "foto" : "fotos"} para tus velas
+                        </p>
+                      )}
                       {persEntries.length > 0 && (
                         <p className="text-xs text-charcoal/50 mt-0.5 truncate">
                           {persEntries.map(([, v]) => v).join(" · ")}
@@ -122,13 +127,19 @@ export default function Cart() {
               <span>{formatCOP(total)}</span>
             </div>
             <p className="text-xs text-charcoal/50 pt-1">
-              Se confirma el pedido con un anticipo del 50%. El envío se coordina por WhatsApp.
+              Se confirma el pedido con un anticipo del 50%, que pagas por Nequi en el siguiente paso.
             </p>
             <button
-              onClick={handleCheckout}
+              onClick={openCheckout}
               className="w-full bg-ink text-cream py-3.5 rounded-full text-sm tracking-wide hover:bg-charcoal transition-colors mt-2"
             >
-              Finalizar por WhatsApp
+              Continuar al pago
+            </button>
+            <button
+              onClick={handleWhatsApp}
+              className="w-full text-xs text-charcoal/60 underline underline-offset-4 hover:text-ink pt-2"
+            >
+              Prefiero coordinar mi pedido por WhatsApp
             </button>
           </div>
         )}

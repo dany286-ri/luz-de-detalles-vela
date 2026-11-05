@@ -4,3 +4,7 @@ dist/
 tsconfig.tsbuildinfo
 .DS_Store
 *.local
+_to_delete/
+vite.config.ts.timestamp-*.mjs
+*.code-workspace
+.netlify/

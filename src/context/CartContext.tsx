@@ -1,21 +1,27 @@
 import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from "react";
 import type { Product } from "../types/product";
 import { SITE_CONFIG } from "../config/site.config";
+import type { ItemPhoto } from "../utils/photos";
 
 export interface CartItem {
   cartId: string;
   product: Product;
   quantity: number;
   personalization: Record<string, string>;
+  /** Fotos subidas para personalizar (opcional: carritos guardados antes no las tienen). */
+  photos?: ItemPhoto[];
 }
 
 interface CartContextValue {
   items: CartItem[];
   isOpen: boolean;
+  isCheckoutOpen: boolean;
   lastAdded: CartItem | null;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (product: Product, quantity: number, personalization: Record<string, string>) => void;
+  openCheckout: () => void;
+  closeCheckout: () => void;
+  addItem: (product: Product, quantity: number, personalization: Record<string, string>, photos?: ItemPhoto[]) => void;
   removeItem: (cartId: string) => void;
   updateQuantity: (cartId: string, quantity: number) => void;
   clearCart: () => void;
@@ -37,23 +43,30 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [lastAdded, setLastAdded] = useState<CartItem | null>(null);
 
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch {
-      /* almacenamiento no disponible, seguimos sin persistencia */
+      // Si no caben las fotos en el almacenamiento del navegador, guardamos el carrito sin ellas.
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items.map((i) => ({ ...i, photos: [] }))));
+      } catch {
+        /* almacenamiento no disponible, seguimos sin persistencia */
+      }
     }
   }, [items]);
 
   const addItem = useCallback(
-    (product: Product, quantity: number, personalization: Record<string, string>) => {
+    (product: Product, quantity: number, personalization: Record<string, string>, photos: ItemPhoto[] = []) => {
       const cartItem: CartItem = {
         cartId: `${product.id}-${Date.now()}`,
         product,
         quantity,
         personalization,
+        photos,
       };
       setItems((prev) => [...prev, cartItem]);
       setLastAdded(cartItem);
@@ -85,9 +98,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const value: CartContextValue = {
     items,
     isOpen,
+    isCheckoutOpen,
     lastAdded,
     openCart: () => setIsOpen(true),
     closeCart: () => setIsOpen(false),
+    openCheckout: () => {
+      setIsOpen(false);
+      setIsCheckoutOpen(true);
+    },
+    closeCheckout: () => setIsCheckoutOpen(false),
     addItem,
     removeItem,
     updateQuantity,

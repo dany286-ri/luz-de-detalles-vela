@@ -19,7 +19,8 @@ export function buildSingleProductMessage(
   presentation: string,
   quantity: number,
   price: number,
-  personalization: Record<string, string>
+  personalization: Record<string, string>,
+  photoCount = 0
 ): string {
   const lines: string[] = [];
   lines.push(`Hola, quiero pedir este detalle de ${SITE_CONFIG.BRAND_NAME}:`);
@@ -36,6 +37,10 @@ export function buildSingleProductMessage(
     persEntries.forEach(([key, value]) => {
       lines.push(`- ${FIELD_LABELS[key] ?? key}: ${value}`);
     });
+  }
+
+  if (photoCount > 0) {
+    lines.push(`Fotos: tengo ${photoCount} foto(s) para enviarte por este chat.`);
   }
 
   lines.push("");
@@ -61,6 +66,9 @@ export function buildCartMessage(items: CartItem[], subtotal: number, domicilio:
       persEntries.forEach(([key, value]) => {
         lines.push(`  - ${FIELD_LABELS[key] ?? key}: ${value}`);
       });
+    }
+    if (item.photos && item.photos.length > 0) {
+      lines.push(`Fotos: ${item.photos.length} (te las envío por este chat)`);
     }
   });
 

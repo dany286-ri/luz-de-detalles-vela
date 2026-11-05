@@ -5,7 +5,7 @@ export type ProductCategory =
   | "navidad"
   | "mascotas";
 
-export type PersonalizationFieldType = "text" | "textarea" | "select" | "date" | "number";
+export type PersonalizationFieldType = "text" | "textarea" | "select" | "date" | "number" | "photos";
 
 export interface PersonalizationField {
   key: string;
@@ -14,6 +14,8 @@ export interface PersonalizationField {
   placeholder?: string;
   options?: string[];
   required?: boolean;
+  /** Solo para type "photos": máximo de fotos que se pueden subir. */
+  maxPhotos?: number;
 }
 
 export interface Product {
@@ -35,5 +37,7 @@ export interface Product {
   personalizationFields?: PersonalizationField[];
   /** Nota corta que aparece bajo el precio, ej. condiciones de pedidos grandes */
   note?: string;
+  /** Cantidad mínima en el mismo pedido para que aplique este precio (ver src/data/catalog.ts). */
+  minQuantity?: number;
   featured?: boolean;
 }

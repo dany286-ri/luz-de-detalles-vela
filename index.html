@@ -37,5 +37,25 @@
       <textarea name="resena"></textarea>
       <input type="text" name="bot-field" />
     </form>
+
+    <!--
+      Formulario oculto de AVISO de pedidos para Netlify Forms (mismo motivo que el de reseñas).
+      El pedido completo (con fotos y pagos) se guarda en la base de datos del sitio y se ve en /admin.
+      Este formulario solo manda un resumen por correo si activas las notificaciones en
+      Netlify → Forms → "pedidos". El checkout (src/utils/orders.ts) envía a este formulario por su "name".
+    -->
+    <form name="pedidos" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="pedido_id" />
+      <input type="text" name="estado_pago" />
+      <input type="text" name="sede" />
+      <input type="text" name="nombre" />
+      <input type="text" name="celular" />
+      <input type="text" name="fecha_entrega" />
+      <textarea name="productos"></textarea>
+      <input type="text" name="total" />
+      <input type="text" name="anticipo_50" />
+      <input type="text" name="fotos" />
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html>

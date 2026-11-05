@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Reveal from "./Reveal";
-import { SITE_CONFIG, formatCOP, PAYMENT_METHODS } from "../config/site.config";
+import { SITE_CONFIG, formatCOP } from "../config/site.config";
 
 const FAQS = [
   {
@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo hago un pedido?",
-    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y confirmas por WhatsApp. Ahí coordinamos el pago del anticipo y la entrega. Si tienes dos sedes cerca (Tunja o Bogotá), te preguntamos cuál te queda mejor para dirigirte al WhatsApp correcto.",
+    a: "Eliges tu detalle en el catálogo, lo personalizas si aplica y lo agregas a tu pedido. Luego dejas tus datos, subes las fotos que quieras en tus velas, eliges la sede (Tunja o Bogotá) y pagas el anticipo por Nequi. Tu pedido queda pendiente de verificación hasta que recibamos tu comprobante por WhatsApp y revisemos tu transferencia. Si prefieres, también puedes coordinarlo por WhatsApp.",
   },
   {
     q: "¿Necesito pagar por adelantado?",
@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo puedo realizar el pago?",
-    a: `Aceptamos ${PAYMENT_METHODS.join(", ")}. Coordinamos el método exacto por WhatsApp al confirmar tu pedido.`,
+    a: "En la página pagas el anticipo del 50% por transferencia Nequi, al número de la sede que elijas (Tunja o Bogotá). Después envías el comprobante por WhatsApp a la sede para que lo verifiquemos. Si prefieres otro método, escríbenos por WhatsApp y lo coordinamos.",
   },
   {
     q: "¿Hacen pedidos grandes para eventos o empresas?",

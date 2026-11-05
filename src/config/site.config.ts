@@ -17,6 +17,10 @@ export const SITE_CONFIG = {
   INSTAGRAM_URL: "https://www.instagram.com/luzde.detalles/",
   EMAIL: "luzdedetalles@gmail.com",
   DOMICILIO_PRICE: 5000,
+  /** Porcentaje que se paga por adelantado para confirmar un pedido personalizado. */
+  DEPOSIT_PERCENT: 50,
+  /** Días mínimos de anticipación para pedidos (se usa en la fecha mínima de entrega). */
+  MIN_LEAD_DAYS: 2,
   CITY: "Tunja, Boyacá",
   CURRENCY_LOCALE: "es-CO",
 };
@@ -30,11 +34,15 @@ export const LOCATIONS = {
     key: "tunja" as const,
     label: "Tunja",
     whatsapp: "573102483613",
+    /** Nequi de la sede Tunja (solo dígitos). Se muestra ÚNICAMENTE a quien eligió esta sede. */
+    nequi: "3102483613",
   },
   bogota: {
     key: "bogota" as const,
     label: "Bogotá",
     whatsapp: "573132799431",
+    /** Nequi de la sede Bogotá (solo dígitos). Se muestra ÚNICAMENTE a quien eligió esta sede. */
+    nequi: "3132799431",
   },
 };
 
@@ -42,6 +50,13 @@ export type LocationKey = keyof typeof LOCATIONS;
 
 /** Métodos de pago realmente configurados hoy. No agregar métodos aquí sin confirmarlos primero. */
 export const PAYMENT_METHODS = ["Transferencia Nequi", "Transferencia Bancolombia", "Llave Bre-B"];
+
+/** "3102483613" -> "310 248 3613" (más fácil de leer). */
+export function formatPhone(digits: string): string {
+  const d = digits.replace(/\D/g, "");
+  if (d.length !== 10) return d;
+  return `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`;
+}
 
 export function formatCOP(value: number): string {
   const formatted = new Intl.NumberFormat(SITE_CONFIG.CURRENCY_LOCALE, {

@@ -5,6 +5,7 @@ import { useCart } from "../context/CartContext";
 import PersonalizationForm from "./PersonalizationForm";
 import { buildSingleProductMessage } from "../utils/whatsapp";
 import { useOrderFlow } from "../context/OrderFlowContext";
+import type { ItemPhoto } from "../utils/photos";
 
 interface ProductModalProps {
   product: Product;
@@ -17,6 +18,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [values, setValues] = useState<Record<string, string>>({});
+  const [photos, setPhotos] = useState<ItemPhoto[]>([]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -28,15 +30,15 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
   const hasImage = product.images.length > 0;
   const missingRequired = (product.personalizationFields ?? [])
     .filter((f) => f.required)
-    .some((f) => !values[f.key]?.trim());
+    .some((f) => (f.type === "photos" ? photos.length === 0 : !values[f.key]?.trim()));
 
   const handleAdd = () => {
-    addItem(product, quantity, values);
+    addItem(product, quantity, values, photos);
     onClose();
   };
 
   const handleWhatsApp = () => {
-    const message = buildSingleProductMessage(product.name, product.presentation, quantity, product.price, values);
+    const message = buildSingleProductMessage(product.name, product.presentation, quantity, product.price, values, photos.length);
     requestWhatsApp(message);
   };
 
@@ -130,6 +132,8 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 fields={product.personalizationFields}
                 values={values}
                 onChange={(key, value) => setValues((v) => ({ ...v, [key]: value }))}
+                photos={photos}
+                onPhotosChange={setPhotos}
               />
             </div>
           )}

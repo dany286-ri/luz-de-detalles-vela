@@ -21,6 +21,7 @@ import InstagramGrid from "./components/InstagramGrid";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 import ProductModal from "./components/ProductModal";
 import AddedToast from "./components/AddedToast";
 import WhatsAppFloatButton from "./components/WhatsAppFloatButton";
@@ -56,6 +57,7 @@ export default function App() {
         <Footer />
 
         <Cart />
+        <Checkout />
         <WhatsAppFloatButton />
         <AddedToast />
         <SedeModal />

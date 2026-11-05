@@ -1,4 +1,5 @@
 import type { Product, PersonalizationField } from "../types/product";
+import { CATALOG } from "./catalog";
 
 import velaDegrade from "../assets/images/vela-degrade.jpg";
 import velaEscarchada from "../assets/images/vela-escarchada.jpg";
@@ -15,16 +16,16 @@ const nombreYFrase: PersonalizationField[] = [
   { key: "colorGlitter", label: "Color de escarcha / degradé", type: "text", placeholder: "Ej: dorado, rosado..." },
   { key: "notas", label: "Información adicional", type: "textarea", placeholder: "Cuéntanos cualquier detalle extra" },
   {
-    key: "fotoAdicional",
-    label: "¿Quieres agregarle una foto a tu vela? (opcional, la envías por WhatsApp)",
-    type: "select",
-    options: ["No, sin foto", "Sí, quiero agregarle una foto"],
+    key: "fotos",
+    label: "Fotos para tus velas (opcional)",
+    type: "photos",
+    maxPhotos: 10,
   },
 ];
 
 const gradoFields: PersonalizationField[] = [
   { key: "nombre", label: "Nombre de quien se gradúa", type: "text", required: true },
-  { key: "foto", label: "Foto para la vela", type: "text", placeholder: "La envías por WhatsApp al confirmar tu pedido", required: true },
+  { key: "fotos", label: "Foto para la vela", type: "photos", required: true, maxPhotos: 3 },
   { key: "anio", label: "Año de grado", type: "text", placeholder: "2026" },
   { key: "mensaje", label: "Mensaje para la tarjeta", type: "textarea", placeholder: "Un mensaje corto y especial" },
   { key: "fechaEvento", label: "Fecha en que lo necesitas", type: "date" },
@@ -35,24 +36,22 @@ const babyShowerFields: PersonalizationField[] = [
   { key: "mensaje", label: "Mensaje para la tarjeta", type: "textarea" },
   { key: "fechaEvento", label: "Fecha del baby shower", type: "date" },
   {
-    key: "fotoAdicional",
-    label: "¿Quieres agregarle una foto a tu vela? (opcional, la envías por WhatsApp)",
-    type: "select",
-    options: ["No, sin foto", "Sí, quiero agregarle una foto"],
+    key: "fotos",
+    label: "Fotos para tu vela (opcional)",
+    type: "photos",
+    maxPhotos: 3,
   },
 ];
 
 const mascotaFields: PersonalizationField[] = [
   { key: "nombreMascota", label: "Nombre de tu mascota", type: "text", required: true },
-  { key: "foto", label: "Foto de tu mascota", type: "text", placeholder: "Nos la envías por WhatsApp al confirmar" },
+  { key: "fotos", label: "Foto de tu mascota", type: "photos", required: true, maxPhotos: 3 },
 ];
 
 export const PRODUCTS: Product[] = [
   {
     id: "vela-degrade",
-    name: "Vela Degradé",
-    presentation: "Pack x5 unidades",
-    price: 8000,
+    ...CATALOG["vela-degrade"],
     shortDescription: "Colores degradados, 12 cm, se personaliza con nombre o frase.",
     description:
       "Un pack de 5 velas de 12 cm con un suave efecto degradado de color. Cada vela se personaliza con una palabra o nombre distinto — perfectas para regalar en conjunto o repartir como detalle individual.",
@@ -64,9 +63,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-escarchada",
-    name: "Vela Escarchada",
-    presentation: "Pack x5 unidades",
-    price: 12000,
+    ...CATALOG["vela-escarchada"],
     shortDescription: "Acabado escarchado, 12 cm, se personaliza.",
     description:
       "Pack de 5 velas de 12 cm con la punta escarchada — un acabado brillante y elegante. Se personalizan con el nombre, palabra o mensaje que quieras para cada una.",
@@ -78,9 +75,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-grande-x6",
-    name: "Vela Grande",
-    presentation: "Pack x6 unidades",
-    price: 18000,
+    ...CATALOG["vela-grande-x6"],
     shortDescription: "16 cm de alto, se puede personalizar.",
     description:
       "Pack de 6 velas grandes de 16 cm de alto. Ideales para decorar o regalar en conjunto, con la opción de personalizar cada una con nombre, palabra o pequeña ilustración.",
@@ -92,9 +87,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-grande-x10",
-    name: "Vela Grande",
-    presentation: "Pack x10 unidades",
-    price: 30000,
+    ...CATALOG["vela-grande-x10"],
     shortDescription: "16 cm de alto, se puede personalizar.",
     emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
     description:
@@ -107,9 +100,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "caja-de-velas",
-    name: "Caja de Velas",
-    presentation: "Pack x10 unidades",
-    price: 22000,
+    ...CATALOG["caja-de-velas"],
     shortDescription: "10 velas de 12 cm presentadas en caja.",
     emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
     description:
@@ -122,9 +113,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-grado",
-    name: "Vela de Grado + Tarjeta",
-    presentation: "Unidad",
-    price: 7500,
+    ...CATALOG["vela-grado"],
     shortDescription: "Con foto, nombre y año. Incluye tarjeta.",
     emotionalHook: "🎓 Un logro que merece quedarse para siempre.",
     description:
@@ -137,9 +126,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-baby-shower",
-    name: "Vela Baby Shower + Tarjeta",
-    presentation: "Unidad",
-    price: 7800,
+    ...CATALOG["vela-baby-shower"],
     shortDescription: "Personalizada con el nombre del bebé. Incluye tarjeta.",
     emotionalHook: "🍼 Un pequeño detalle para darle la bienvenida a alguien muy especial.",
     description:
@@ -151,9 +138,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "vela-baby-shower-50",
-    name: "Vela Baby Shower 50+",
-    presentation: "Unidad (pedidos de 50 o más)",
-    price: 7000,
+    ...CATALOG["vela-baby-shower-50"],
     shortDescription: "Mismo detalle, precio especial para pedidos grandes.",
     emotionalHook: "🍼 Un pequeño detalle para darle la bienvenida a alguien muy especial.",
     description:
@@ -166,9 +151,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "esfera-navidena-mascota",
-    name: "Esfera Navideña Personalizada para Mascota",
-    presentation: "Unidad",
-    price: 11000,
+    ...CATALOG["esfera-navidena-mascota"],
     shortDescription: "Con foto y nombre de tu mascota. Incluye listón.",
     emotionalHook: "🐾 Porque ellos también hacen parte de nuestros recuerdos.",
     description:
