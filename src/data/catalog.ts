@@ -30,8 +30,12 @@ export const CATALOG = {
     price: 7000,
     minQuantity: 50,
   },
+  "vela-navidena": { name: "Velas Navideñas", presentation: "Pack x5 unidades", price: 12000 },
+  "caja-velas-dios": { name: "Caja de Velas de Dios", presentation: "Caja x10 unidades", price: 22000 },
+  "velas-virgen-maria": { name: "Velas de la Virgen María", presentation: "Pack x5 unidades", price: 12000 },
+  "caja-velas-pesebre": { name: "Caja de Velas del Pesebre", presentation: "Caja x10 unidades", price: 22000 },
   "esfera-navidena-mascota": {
-    name: "Esfera Navideña Personalizada para Mascota",
+    name: "Esfera Navideña Personalizada",
     presentation: "Unidad",
     price: 11000,
   },

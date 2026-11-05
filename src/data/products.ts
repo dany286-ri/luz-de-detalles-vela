@@ -10,6 +10,11 @@ import grado from "../assets/images/grado.jpg";
 import babyShower from "../assets/images/baby-shower.jpg";
 import collage from "../assets/images/collage.jpg";
 import esferaNavidena from "../assets/images/esfera-navidena.jpg";
+import esferaPersonas from "../assets/images/esfera-personas.jpg";
+import velasNavidenas from "../assets/images/velas-navidenas.jpg";
+import cajaDios from "../assets/images/caja-dios.jpg";
+import velasVirgen from "../assets/images/velas-virgen.jpg";
+import cajaPesebre from "../assets/images/caja-pesebre.jpg";
 
 const nombreYFrase: PersonalizationField[] = [
   { key: "nombre", label: "Nombre o palabra", type: "text", placeholder: "Ej: Gratitud, María...", required: true },
@@ -43,9 +48,49 @@ const babyShowerFields: PersonalizationField[] = [
   },
 ];
 
-const mascotaFields: PersonalizationField[] = [
-  { key: "nombreMascota", label: "Nombre de tu mascota", type: "text", required: true },
-  { key: "fotos", label: "Foto de tu mascota", type: "photos", required: true, maxPhotos: 3 },
+const esferaFields: PersonalizationField[] = [
+  { key: "nombre", label: "Nombre (de la persona o la mascota)", type: "text", placeholder: "Ej: Isabela, Luna...", required: true },
+  { key: "fotos", label: "Foto de la persona o mascota", type: "photos", required: true, maxPhotos: 3 },
+];
+
+const navidenasFields: PersonalizationField[] = [
+  {
+    key: "imagenes",
+    label: "Imágenes de las velas",
+    type: "select",
+    options: ["Navideñas (como en la foto)", "Al gusto (te cuento cuáles)"],
+  },
+  {
+    key: "frases",
+    label: "Frases para tus velas (opcional)",
+    type: "textarea",
+    placeholder: "Escribe la frase de cada vela. Si no escribes ninguna, elegimos frases bonitas por ti.",
+  },
+  { key: "colorGlitter", label: "Color de escarcha", type: "text", placeholder: "Ej: dorado, rosado..." },
+  { key: "notas", label: "Información adicional", type: "textarea", placeholder: "Si elegiste «Al gusto», cuéntanos qué imágenes quieres" },
+];
+
+const frasesFields: PersonalizationField[] = [
+  {
+    key: "frases",
+    label: "Frases para tus velas (opcional)",
+    type: "textarea",
+    placeholder: "Escribe la frase de cada vela. Si no escribes ninguna, usamos las de la foto.",
+  },
+  { key: "colorGlitter", label: "Color de escarcha", type: "text", placeholder: "Ej: dorado, rosado..." },
+  { key: "notas", label: "Información adicional", type: "textarea", placeholder: "Cuéntanos cualquier detalle extra" },
+];
+
+const pesebreFields: PersonalizationField[] = [
+  {
+    key: "deseos",
+    label: "Deseos o nombres para tus velas",
+    type: "textarea",
+    placeholder: "Ej: Amor, Salud, Paz... o el nombre de cada persona",
+    required: true,
+  },
+  { key: "colorGlitter", label: "Color de escarcha", type: "text", placeholder: "Ej: dorado, rosado..." },
+  { key: "notas", label: "Información adicional", type: "textarea", placeholder: "Cuéntanos cualquier detalle extra" },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -150,16 +195,62 @@ export const PRODUCTS: Product[] = [
     note: "Precio válido desde 50 unidades en el mismo pedido.",
   },
   {
+    id: "vela-navidena",
+    ...CATALOG["vela-navidena"],
+    shortDescription: "Imágenes navideñas o al gusto, con la frase que quieras.",
+    emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
+    description:
+      "Pack de 5 velas con imágenes navideñas (o las que prefieras) y una frase en cada una. Puedes cambiar la frase por la que quieras, y la escarcha por el color que más te guste.",
+    category: ["regalos", "navidad"],
+    images: [velasNavidenas],
+    personalizable: true,
+    personalizationFields: navidenasFields,
+  },
+  {
+    id: "caja-velas-dios",
+    ...CATALOG["caja-velas-dios"],
+    shortDescription: "10 velas con frases de fe, en caja. Cambia las frases.",
+    description:
+      "Caja con 10 velas ilustradas con Dios y frases de fe y esperanza, lista para regalar. Puedes cambiar las frases por las que quieras para cada vela.",
+    category: ["regalos"],
+    images: [cajaDios],
+    personalizable: true,
+    personalizationFields: frasesFields,
+  },
+  {
+    id: "velas-virgen-maria",
+    ...CATALOG["velas-virgen-maria"],
+    shortDescription: "Con la Virgen María. Cambia las frases.",
+    description:
+      "Pack de 5 velas ilustradas con la Virgen María y una frase en cada una. Puedes cambiar las frases por las que quieras y elegir el color de la escarcha.",
+    category: ["regalos"],
+    images: [velasVirgen],
+    personalizable: true,
+    personalizationFields: frasesFields,
+  },
+  {
+    id: "caja-velas-pesebre",
+    ...CATALOG["caja-velas-pesebre"],
+    shortDescription: "10 velas del pesebre en caja, con deseos o nombres.",
+    emotionalHook: "🎄 Un detalle diferente para iluminar esta Navidad.",
+    description:
+      "Caja con 10 velas ilustradas con los personajes del pesebre, lista para regalar. Cada vela lleva un deseo o un nombre a tu elección, como Amor, Salud, Paz o el de tu familia.",
+    category: ["regalos", "navidad"],
+    images: [cajaPesebre],
+    personalizable: true,
+    personalizationFields: pesebreFields,
+  },
+  {
     id: "esfera-navidena-mascota",
     ...CATALOG["esfera-navidena-mascota"],
-    shortDescription: "Con foto y nombre de tu mascota. Incluye listón.",
-    emotionalHook: "🐾 Porque ellos también hacen parte de nuestros recuerdos.",
+    shortDescription: "Con foto y nombre, para cualquier persona o mascota. Incluye listón.",
+    emotionalHook: "🎄 Para toda la familia, incluidas las mascotas.",
     description:
-      "Una esfera navideña de acrílico transparente con la foto y el nombre de tu mascota — un recuerdo tierno para colgar en el árbol. Incluye listón para colgar.",
-    category: ["navidad", "mascotas"],
-    images: [esferaNavidena],
+      "Una esfera navideña de acrílico transparente con la foto y el nombre de quien quieras — para todo tipo de persona o mascota. Un recuerdo tierno para colgar en el árbol. Incluye listón para colgar.",
+    category: ["navidad", "mascotas", "regalos"],
+    images: [esferaNavidena, esferaPersonas],
     personalizable: true,
-    personalizationFields: mascotaFields,
+    personalizationFields: esferaFields,
     featured: true,
   },
 ];

@@ -47,6 +47,9 @@ const FIELD_LABELS: Record<string, string> = {
   mensaje: "Mensaje",
   fechaEvento: "Fecha del evento",
   nombreMascota: "Nombre de la mascota",
+  imagenes: "Imágenes",
+  frases: "Frases",
+  deseos: "Deseos o nombres",
 };
 
 export function describeItems(items: CartItem[]): string {

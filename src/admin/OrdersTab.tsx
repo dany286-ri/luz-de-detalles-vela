@@ -36,6 +36,9 @@ const FIELD_LABELS: Record<string, string> = {
   mensaje: "Mensaje",
   fechaEvento: "Fecha del evento",
   nombreMascota: "Nombre de la mascota",
+  imagenes: "Imágenes",
+  frases: "Frases",
+  deseos: "Deseos o nombres",
 };
 
 const inputClass = "w-full rounded-lg border border-ink/15 bg-cream px-3 py-2 text-sm text-ink focus:outline-none focus:border-gold";
