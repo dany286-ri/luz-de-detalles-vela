@@ -6,6 +6,7 @@ import PersonalizationForm from "./PersonalizationForm";
 import { buildSingleProductMessage } from "../utils/whatsapp";
 import { useOrderFlow } from "../context/OrderFlowContext";
 import type { ItemPhoto } from "../utils/photos";
+import FitImage from "./FitImage";
 
 interface ProductModalProps {
   product: Product;
@@ -56,11 +57,12 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
         <div className="bg-beige">
           {hasImage ? (
-            <>
-              <img
+            <div className="md:sticky md:top-0">
+              <FitImage
                 src={product.images[activeImage]}
                 alt={`${product.name} - ${product.presentation}, foto real del producto`}
-                className="w-full aspect-square md:aspect-auto md:h-full object-cover"
+                mode="contain"
+                className="w-full aspect-square md:aspect-[4/5]"
               />
               {product.images.length > 1 && (
                 <div className="flex gap-2 p-3 md:absolute md:bottom-3 md:left-3">
@@ -77,7 +79,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                   ))}
                 </div>
               )}
-            </>
+            </div>
           ) : (
             <div className="w-full aspect-square flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-beige to-sand text-cocoa">
               <span className="text-4xl inline-block animate-flicker" aria-hidden>

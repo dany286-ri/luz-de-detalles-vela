@@ -1,5 +1,6 @@
 import React from "react";
 import Reveal from "./Reveal";
+import FitImage from "./FitImage";
 import velaDegrade from "../assets/images/vela-degrade.jpg";
 import velaEscarchada from "../assets/images/vela-escarchada.jpg";
 import velaGrandeX6 from "../assets/images/vela-grande-x6.jpg";
@@ -33,14 +34,13 @@ export default function Gallery() {
         <div className="columns-2 md:columns-4 gap-4 md:gap-5 [column-fill:balance]">
           {PHOTOS.map((photo, idx) => (
             <Reveal key={photo.src} delay={(idx % 4) * 70} className="mb-4 md:mb-5 break-inside-avoid">
-              <div className={`overflow-hidden rounded-2xl ${photo.tall ? "aspect-[3/4]" : "aspect-square"}`}>
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+              <FitImage
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className={`rounded-2xl ${photo.tall ? "aspect-[3/4]" : "aspect-square"}`}
+                imgClassName="hover:scale-105 transition-transform duration-500"
+              />
             </Reveal>
           ))}
         </div>

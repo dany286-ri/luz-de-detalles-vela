@@ -1,6 +1,7 @@
 import React from "react";
 import type { Product } from "../types/product";
 import { formatCOP } from "../config/site.config";
+import FitImage from "./FitImage";
 
 interface ProductCardProps {
   product: Product;
@@ -17,11 +18,12 @@ export default function ProductCard({ product, onOpen }: ProductCardProps) {
     >
       <div className="relative aspect-[4/5] bg-beige overflow-hidden">
         {hasImage ? (
-          <img
+          <FitImage
             src={product.images[0]}
             alt={`${product.name} - ${product.presentation}, foto real del producto`}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+            className="absolute inset-0"
+            imgClassName="group-hover:scale-[1.04] transition-transform duration-500"
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-beige to-sand text-cocoa">
